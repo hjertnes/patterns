@@ -13,9 +13,12 @@ func FindRaw(input string, start string, end string) (string, error) {
 	}
 
 	s := strings.Index(input, start)
+
+	input = input[s:]
+
 	e := strings.Index(input, end) + len(end)
 
-	return input[s:e], nil
+	return input[:e], nil
 }
 
 func Find(input string, start string, end string) (string, error) {

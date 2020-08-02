@@ -1,4 +1,4 @@
-module git.sr.ht/~hjertnes/pattersn
+module git.sr.ht/~hjertnes/patterns
 
 go 1.14
 
