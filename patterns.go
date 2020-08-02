@@ -1,4 +1,4 @@
-package substring
+package patterns
 
 import (
 	"errors"
