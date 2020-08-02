@@ -1,0 +1,4 @@
+* Patterns
+I hate regex. I can never understand what it all does after writing it, and have to re-write it every time something changes. And most of the time I can't even get it to work. A lot of the time I just end up picking out a section of a string based on some start and end patterns.
+
+This package is an attempt to make a nice golang library to make that a little bit easier. Probably adding more as I see the need.
