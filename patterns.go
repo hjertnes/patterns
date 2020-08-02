@@ -1,3 +1,4 @@
+// Package patterns contains various methods for pattern matching
 package patterns
 
 import (
@@ -5,11 +6,13 @@ import (
 	"strings"
 )
 
-var ErrorInvalidIndex = errors.New("index is invalid")
+// ErrInvalidMatch error for when the supplied start or end strings isn't in the input string.
+var ErrInvalidMatch = errors.New("match is invalid")
 
+// FindRaw Returns a substring matching the supplied arguments or error; also contains the matched characters.
 func FindRaw(input string, start string, end string) (string, error) {
-	if !strings.Contains(input, start) || !strings.Contains(input, end){
-		return "", ErrorInvalidIndex
+	if !strings.Contains(input, start) || !strings.Contains(input, end) {
+		return "", ErrInvalidMatch
 	}
 
 	s := strings.Index(input, start)
@@ -21,9 +24,10 @@ func FindRaw(input string, start string, end string) (string, error) {
 	return input[:e], nil
 }
 
+// Find Returns a substring matching the supplied arguments or error; doesn't contains the matched characters.
 func Find(input string, start string, end string) (string, error) {
 	result, err := FindRaw(input, start, end)
-	if err != nil{
+	if err != nil {
 		return "", err
 	}
 
@@ -31,6 +35,4 @@ func Find(input string, start string, end string) (string, error) {
 	e := len(result) - len(end)
 
 	return result[s:e], err
-
-
 }

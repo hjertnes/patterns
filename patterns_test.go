@@ -3,11 +3,12 @@ package patterns
 import (
 	"errors"
 	"testing"
-)
-import "github.com/stretchr/testify/assert"
 
-func TestFindRaw(t *testing.T){
-	t.Run("Happy path", func(t *testing.T){
+	"github.com/stretchr/testify/assert"
+)
+
+func TestFindRaw(t *testing.T) {
+	t.Run("Happy path", func(t *testing.T) {
 		testString := "This is a [[https://google.com][Link]]"
 		expectedResult := "[[https://google.com][Link]]"
 
@@ -23,7 +24,7 @@ func TestFindRaw(t *testing.T){
 		_, err := FindRaw(testString, "[[", "]]")
 
 		assert.Error(t, err)
-		assert.True(t, errors.Is(err, ErrorInvalidIndex))
+		assert.True(t, errors.Is(err, ErrInvalidMatch))
 	})
 
 	t.Run("End not found", func(t *testing.T) {
@@ -32,12 +33,12 @@ func TestFindRaw(t *testing.T){
 		_, err := FindRaw(testString, "[[", "]]")
 
 		assert.Error(t, err)
-		assert.True(t, errors.Is(err, ErrorInvalidIndex))
+		assert.True(t, errors.Is(err, ErrInvalidMatch))
 	})
 }
 
-func TestFind(t *testing.T){
-	t.Run("Happy path", func(t *testing.T){
+func TestFind(t *testing.T) {
+	t.Run("Happy path", func(t *testing.T) {
 		testString := "This is a [[https://google.com][Link]]"
 		expectedResult := "https://google.com][Link"
 
@@ -53,7 +54,7 @@ func TestFind(t *testing.T){
 		_, err := Find(testString, "[[", "]]")
 
 		assert.Error(t, err)
-		assert.True(t, errors.Is(err, ErrorInvalidIndex))
+		assert.True(t, errors.Is(err, ErrInvalidMatch))
 	})
 
 	t.Run("End not found", func(t *testing.T) {
@@ -62,6 +63,6 @@ func TestFind(t *testing.T){
 		_, err := Find(testString, "[[", "]]")
 
 		assert.Error(t, err)
-		assert.True(t, errors.Is(err, ErrorInvalidIndex))
+		assert.True(t, errors.Is(err, ErrInvalidMatch))
 	})
 }
