@@ -36,3 +36,13 @@ func Find(input string, start string, end string) (string, error) {
 
 	return result[s:e], err
 }
+
+// FindAndSplit Returns a splitted substring based on params.
+func FindAndSplit(input, start, end, split string) ([]string, error) {
+	result, err := Find(input, start, end)
+	if err != nil {
+		return make([]string, 0), err
+	}
+
+	return strings.Split(result, split), nil
+}
